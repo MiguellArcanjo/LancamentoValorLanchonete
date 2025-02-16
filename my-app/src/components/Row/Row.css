@@ -9,7 +9,6 @@
     /* padding: 10px;  */
     box-sizing: border-box;
     box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.1), 0 6px 15px rgba(0, 0, 0, 0.08);
-    
 }
 
 .name, .type, .value, .date {
@@ -19,8 +18,14 @@
 
 
 .name {
-    width: 120px;
+    width: 110px;
     margin-left: 5px;
+    height: 50px;
+    border-right: 1px solid #fff;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-right: 1px solid #fff;
 }
 
@@ -32,7 +37,7 @@
 }
 
 .type {
-    width: 80px;
+    width: 70px;
     height: 50px;
     border-right: 1px solid #fff;
     text-align: center;
@@ -43,18 +48,23 @@
 }
 
 .value {
-    width: 100px;
+    width: 130px;
     height: 50px;
     border-right: 1px solid #fff;
-    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .date {
-    width: 100px;
+    width: 130px;
+    /* margin-right: 20px; */
 }
+
+.date p{
+    white-space: nowrap;
+}
+
 
 .name p, .type p, .value p, .date p {
     margin-right: 90px;

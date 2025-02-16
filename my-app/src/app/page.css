@@ -1,17 +1,19 @@
 .containerPage {
   height: 100vh;
+
 }
 
 .mainPage {
   display: flex;
-  /* justify-content: center; */
+  flex-direction: column;
   background-color: #1F1F1E;
   width: 95%;
-  height: 500px;
+  height: 100%; 
   margin: 0 auto;
   border-radius: 10px;
-  flex-direction: column;
+  overflow-y: auto;
 }
+
 
 .sectionButtonFilter {
   display: flex;
@@ -53,8 +55,8 @@
   margin: 40px auto;
   border-radius: 10px;
   padding: 2px;
-  height: 350px;
-  overflow-y: scroll;
+  max-height: 70vh; /* Altura máxima relativa à viewport */
+  overflow-y: auto; /* Permite rolagem vertical */
   justify-content: center;
   align-items: center;
 }
@@ -62,6 +64,9 @@
 .rows h2 {
   text-align: center;
   color: #1F1F1E;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+
 }
 
 .sectionTotal {
@@ -111,17 +116,38 @@ input[type="date"] {
   outline: none;
 }
 
+.btnVoltar {
+  background-color: #BAB8B7;
+  width: 200px;
+  padding: 5px;
+  border: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  color: #1F1F1E;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
 @media (max-width: 768px) {
+
+  .mainPage {
+    width: 95%; 
+    padding: 10px; 
+    overflow-y: auto; 
+    height: 100%;
+  }
+
   .rows {
-    background-color: #1F1F1E;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin: 40px 10px 40px 10px;
-    border-radius: 10px;
-    padding: 2px;
-    height: 350px;
-    overflow-y: scroll;
-    width: 90%;
+    /* max-height: auto;  */
+    max-height: none;
+  }
+
+  .sectionTotal {
+    margin: auto 0 20px 0;
+    width: 100%; 
   }
 }

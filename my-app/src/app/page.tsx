@@ -1,12 +1,15 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import "./page.css";
+import Image from "next/image";
+import toast, { Toaster } from 'react-hot-toast';
+
 import { Nav } from "@/components/Nav/Nav";
 import { Row } from "@/components/Row/Row";
 import { handleFileUpload } from "@/components/Nav/Nav";
-import Image from "next/image";
 import { LoadingSpinner } from "@/components/Loading/Loading";
+
+import "./page.css";
 
 export default function Home() {
   const [rows, setRows] = useState<any[]>([]);
@@ -15,19 +18,24 @@ export default function Home() {
   const [endDate, setEndDate] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
+  const notify = () => toast('Lançamento Salvo com Sucesso!');
+
   useEffect(() => {
     fetchLancamentos();
   }, []);
 
   const formatDateForBackend = (date: string) => {
     if (!date) return "";
-    
     const [year, month, day] = date.split("-");
-    
     if (!year || !month || !day) return ""; 
-
     return `${day}/${month}/${year}`; 
   };
+
+  function formatDateToBR(date: string): string {
+    if (!date) return ""; 
+    const [year, month, day] = date.split("-");
+    return `${day}/${month}/${year}`;
+  }
 
   const handleFilterByDate = () => {
     if (!startDate || !endDate) {
@@ -59,7 +67,6 @@ export default function Home() {
     }
   }
 
-
   async function salvarLancamentos(lancamentos: any[]) {
     try {
       const response = await fetch("https://apilancamentolanchonete.onrender.com/api/lancamentos", {
@@ -73,11 +80,16 @@ export default function Home() {
         throw new Error(errorData.error || "Erro ao salvar os lançamentos.");
       }
   
-      console.log("Lançamentos salvos com sucesso!");
+      alert("Lançamento salvo com sucesso!")
       fetchLancamentos(); 
+      refreshPage();
     } catch (error) {
       console.error(error);
     }
+  }
+
+  function refreshPage() {
+    window.location.reload();
   }
 
   return (
@@ -90,7 +102,7 @@ export default function Home() {
         <div className="sectionButtonFilter">
           <input 
             type="date" 
-            value={startDate} 
+            value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
           />
           <input 
@@ -123,18 +135,7 @@ export default function Home() {
                   />
                 ))}
               </div>
-              <div className="rows">
-                <h2>Lançamentos Salvos</h2>
-                {savedRows.map((row, index) => (
-                  <Row
-                    key={index}
-                    name={row.name}
-                    type={row.type}
-                    value={row.value}
-                    date={row.date}
-                  />
-                ))}
-              </div>
+              <button className="btnVoltar" onClick={refreshPage}>{"<-"} Voltar</button>
             </>
           ) : (
             <div className="rows">
@@ -144,23 +145,23 @@ export default function Home() {
                   name={row.name}
                   type={row.type}
                   value={row.value}
-                  date={row.date}
+                  date={formatDateToBR(row.date)}
                 />
               ))}
             </div>
           )
         )}
 
-        
-
         <div className="sectionTotal">
           <p>Total = {savedRows.reduce((acc, row) => acc + parseFloat(row.value || 0), 0).toFixed(2)}</p>
-          <button onClick={() => salvarLancamentos(rows)}>
+          <button onClick={() => {salvarLancamentos(rows);}}>
             Salvar
             <Image src="/ArrowIcon.svg" alt="Icone salvar" width={25} height={25} className="imgArrow" />
           </button>
+          
         </div>
       </main>
     </div>
   );
 }
+
