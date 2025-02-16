@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lancamento {
+  id          Int      @id @default(autoincrement())
+  date        String
+  name        String
+  value       Float
+  type        String
+  createdAt   DateTime @default(now())
+}
