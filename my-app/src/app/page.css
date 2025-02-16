@@ -16,23 +16,18 @@
 .sectionButtonFilter {
   display: flex;
   height: 40px;
-  width: 80%;
-  margin-left: 16%;
+  width: 95%;
+  margin-left: 2%;
   background-color: #1F1F1E;
-  justify-content: end;
-  align-items: start;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  /* gap: 20px; */
 }
 
-.rows {
-  background-color: #1F1F1E;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  margin: 30px 10px 30px 10px;
-  border-radius: 10px;
-  padding: 2px;
-  height: 350px;
-  overflow: scroll;
+.sectionButtonFilter input {
+  margin-top: 10px;
+  margin-right: 20px;
 }
 
 .sectionButtonFilter button {
@@ -45,17 +40,39 @@
   border: none;
   border-radius: 5px;
   margin-top: 10px;
-  font-size: 18px;
+  font-size: 15px;
   box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.1), 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.rows {
+  background-color: #1F1F1E;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+  margin: 40px auto;
+  border-radius: 10px;
+  padding: 2px;
+  height: 350px;
+  overflow-y: scroll;
+  justify-content: center;
+  align-items: center;
+}
+
+.rows h2 {
+  text-align: center;
+  color: #1F1F1E;
 }
 
 .sectionTotal {
   background-color: #BAB8B7;
   width: 90%;
   display: flex;
-  gap: 80px;
+  gap: 10px;
   justify-content: space-around;
+  padding: 5px;
   margin: 0 auto;
+  margin-bottom: 20px;
   align-items: center;
   border-radius: 5px;
   box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.1), 0 6px 15px rgba(0, 0, 0, 0.08);
@@ -63,7 +80,7 @@
 
 .sectionTotal p {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 18px
 }
 
 .sectionTotal button {
@@ -82,4 +99,29 @@
 
 .imgArrow {
   background-color: #1F1F1E;
+}
+
+input[type="date"] {
+  box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.1), 0 6px 15px rgba(0, 0, 0, 0.08);
+  background-color: #BAB8B7;
+  border-radius: 5px;
+  padding: 2px;
+  font-size: 13px;
+  color: #333;
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .rows {
+    background-color: #1F1F1E;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 40px 10px 40px 10px;
+    border-radius: 10px;
+    padding: 2px;
+    height: 350px;
+    overflow-y: scroll;
+    width: 90%;
+  }
 }

@@ -1,6 +1,6 @@
 .containerROw {
     display: flex;
-    width: 100%;
+    width: 40%;
     gap: 10px;
     background-color: #1F1F1E;
     align-items: center;
@@ -74,4 +74,19 @@
 
 .imgPix {
     background-color: #1F1F1E;
+}
+
+@media (max-width: 768px) {
+    .containerROw {
+        display: flex;
+        width: 100%;
+        gap: 10px;
+        background-color: #1F1F1E;
+        align-items: center;
+        border: 1px solid #fff; 
+        border-radius: 5px; 
+        box-sizing: border-box;
+        box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.1), 0 6px 15px rgba(0, 0, 0, 0.08);
+        
+    }
 }
