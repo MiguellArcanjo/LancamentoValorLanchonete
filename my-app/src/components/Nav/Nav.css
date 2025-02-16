@@ -1,0 +1,37 @@
+.containerNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+    gap: 50px;
+}
+
+.containerTitle {
+    text-align: center;
+    color: #1F1F1E;
+}
+
+.ContainerButton {
+    color: #1F1F1E;
+    
+    padding: 8px;
+    background-color: #BAB8B7;
+    border: none;
+    border-radius: 5px;
+    width: 180px;
+    font-size: 0.8rem;
+    box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.1), 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.ContainerButton label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    gap: 10px;
+}
+
+.imgImport {
+    position: relative;
+    bottom: 2px;
+}

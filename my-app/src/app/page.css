@@ -1,0 +1,85 @@
+.containerPage {
+  height: 100vh;
+}
+
+.mainPage {
+  display: flex;
+  /* justify-content: center; */
+  background-color: #1F1F1E;
+  width: 95%;
+  height: 500px;
+  margin: 0 auto;
+  border-radius: 10px;
+  flex-direction: column;
+}
+
+.sectionButtonFilter {
+  display: flex;
+  height: 40px;
+  width: 80%;
+  margin-left: 16%;
+  background-color: #1F1F1E;
+  justify-content: end;
+  align-items: start;
+}
+
+.rows {
+  background-color: #1F1F1E;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin: 30px 10px 30px 10px;
+  border-radius: 10px;
+  padding: 2px;
+  height: 350px;
+  overflow: scroll;
+}
+
+.sectionButtonFilter button {
+  padding: 5px;
+  color: #1F1F1E;
+  font-weight: bold;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 18px;
+  box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.1), 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.sectionTotal {
+  background-color: #BAB8B7;
+  width: 90%;
+  display: flex;
+  gap: 80px;
+  justify-content: space-around;
+  margin: 0 auto;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 2px 8px 15px rgba(0, 0, 0, 0.1), 0 6px 15px rgba(0, 0, 0, 0.08);
+}
+
+.sectionTotal p {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.sectionTotal button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  color: #fff;
+  background-color: #1F1F1E;
+  padding: 2px 8px 2px 8px;
+  margin: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.imgArrow {
+  background-color: #1F1F1E;
+}
