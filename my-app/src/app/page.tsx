@@ -6,12 +6,14 @@ import { Nav } from "@/components/Nav/Nav";
 import { Row } from "@/components/Row/Row";
 import { handleFileUpload } from "@/components/Nav/Nav";
 import Image from "next/image";
+import { LoadingSpinner } from "@/components/Loading/Loading";
 
 export default function Home() {
   const [rows, setRows] = useState<any[]>([]);
   const [savedRows, setSavedRows] = useState<any[]>([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetchLancamentos();
@@ -39,11 +41,12 @@ export default function Home() {
     console.log("Filtrando por data:", formattedStartDate, formattedEndDate);
 
     fetchLancamentos(formattedStartDate, formattedEndDate);
-};
+  };
 
   async function fetchLancamentos(start = "", end = "") {
+    setIsLoading(true);
     try {
-      const response = await fetch(`http://localhost:3001/api/lancamentos?startDate=${start}&endDate=${end}`);
+      const response = await fetch(`https://apilancamentolanchonete.onrender.com/api/lancamentos?startDate=${start}&endDate=${end}`);
       if (!response.ok) {
         throw new Error("Erro ao buscar lançamentos");
       }
@@ -51,12 +54,15 @@ export default function Home() {
       setSavedRows(data);
     } catch (error) {
       console.error("Erro ao buscar lançamentos:", error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
+
   async function salvarLancamentos(lancamentos: any[]) {
     try {
-      const response = await fetch("http://localhost:3001/api/lancamentos", {
+      const response = await fetch("https://apilancamentolanchonete.onrender.com/api/lancamentos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ lancamentos }), 
@@ -98,22 +104,40 @@ export default function Home() {
           </button>
         </div>
 
-        {rows.length > 0 ? (
-          <>
+        {isLoading ? (
+          <div className="rows">
+            <LoadingSpinner />
+          </div>
+        ) : (
+          rows.length > 0 ? (
+            <>
+              <div className="rows">
+                <h2>Lançamentos do CSV</h2>
+                {rows.map((row, index) => (
+                  <Row
+                    key={index}
+                    name={row.name}
+                    type={row.type}
+                    value={row.value}
+                    date={row.date}
+                  />
+                ))}
+              </div>
+              <div className="rows">
+                <h2>Lançamentos Salvos</h2>
+                {savedRows.map((row, index) => (
+                  <Row
+                    key={index}
+                    name={row.name}
+                    type={row.type}
+                    value={row.value}
+                    date={row.date}
+                  />
+                ))}
+              </div>
+            </>
+          ) : (
             <div className="rows">
-              <h2>Lançamentos do CSV</h2>
-              {rows.map((row, index) => (
-                <Row
-                  key={index}
-                  name={row.name}
-                  type={row.type}
-                  value={row.value}
-                  date={row.date}
-                />
-              ))}
-            </div>
-            <div className="rows">
-              <h2>Lançamentos Salvos</h2>
               {savedRows.map((row, index) => (
                 <Row
                   key={index}
@@ -124,19 +148,7 @@ export default function Home() {
                 />
               ))}
             </div>
-          </>
-        ) : (
-          <div className="rows">
-            {savedRows.map((row, index) => (
-              <Row
-                key={index}
-                name={row.name}
-                type={row.type}
-                value={row.value}
-                date={row.date}
-              />
-            ))}
-          </div>
+          )
         )}
 
         
